@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            
+            position: relative;
+        }
+        .warp{
+            position: absolute;
+            transition: 0.5s;
+            display: flex;
+            left: 0;
+            /* animation: donghua 8s infinite; */
+        } 
+        img{
+            width: 600px;
+            height: 400px;
+            
+        }
+        label{
+            display: inline-block;
+            border: 2px solid white;
+            width: 50px;
+            height: 10px;
+            /* background-color: gold; */
+
+        }
+        label:hover{
+            background-color: white;
+        }
+        .list{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+            /* z-index: 99; */
+        }
+        input[type=radio]{
+            display: none;
+        }
+        #r1:checked ~ .warp{
+            left: 0px;
+        }
+        #r2:checked ~ .warp{
+            left: -100%;
+        }
+        #r3:checked ~ .warp{
+            left: -200%;
+        }
+        #r4:checked ~ .warp{
+            left: -300%;
+        }
+        
+        #r1:checked ~ .list>.r1{
+            background-color: white;
+        }
+        #r2:checked ~ .list>.r2{
+            background-color: white;
+        }
+        #r3:checked ~ .list>.r3{
+            background-color: white;
+        }
+        #r4:checked ~ .list>.r4{
+            background-color: white;
+        }
+        @keyframes donghua {
+            0%{
+                left: 0;
+            }
+            25%{
+                left: -100%;
+            }
+            50%{
+                left: -200%;
+            }
+            75%{
+                left: -300%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="radio" name="r" id="r1" checked>
+        <input type="radio" name="r" id="r2">
+        <input type="radio" name="r" id="r3">
+        <input type="radio" name="r" id="r4">
+        <div class="warp">
+            <img src="./bj1.jpg" alt="">
+            <img src="./bj2.jpg" alt="">
+            <img src="./b.png" alt="">
+            <img src="./bj.png" alt="">
+        </div>
+        <div class="list">
+            <label for="r1" class="r1"></label>
+            <label for="r2" class="r2"></label>
+            <label for="r3" class="r3"></label>
+            <label for="r4" class="r4"></label>
+        </div>
+    </div>
+    <script>
+        var warp = document.querySelector('.warp')
+        var radio = document.querySelectorAll('input')
+        var list = document.querySelector('.list')
+        var i = 0;
+        var time = setInterval(function() {
+            radio[i%4].checked = true
+            // warp.style.left = -600*(i%4)+'px';
+            i++
+        },2000)
+        list.onclick = function() {
+            clearInterval(time);
+            time = setInterval(function () {
+                radio[i % 4].checked = true
+                // warp.style.left = -600*(i%4)+'px';
+                i++
+            }, 2000)
+        }
+    </script>
+</body>
+</html>

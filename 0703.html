@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 200px;
+            position: relative;
+            font-size: 1rem;
+        }
+        .a{
+            background-color: gold;
+            width: 100px;
+            /* flex-shrink: 1; */
+            /* flex-grow: 1; */
+            float:left;
+            margin-left: -100%;
+            /* left: 100px; */
+            transform: translateX(100px);
+            /* z-index: 999; */
+        }
+        .c{
+            background-color: greenyellow;
+            width: 100px;
+            /* flex-grow: 0.5; */
+            /* flex-shrink: 0; */
+            float:left;
+            /* margin-left: 100%; */
+            margin-left: -100px;
+            /* right: -100px; */
+        }
+        .b{
+            background-color: grey;
+            /* flex-grow: 1; */
+            /* flex-shrink: 2; */
+            /* margin-right: 100px; */
+            /* clear: both; */
+            float: left;
+            width: 100%;
+            /* margin-left: 100px; */
+            /* padding: 0 100px 0 100px; */
+            /* z-index: 99; */
+        }
+        body{
+            margin: 0;
+            /* padding: 0 100px 0 100px; */
+            /* display: flex; */
+            /* justify-content: space-around; */
+            /* align-items: stretch; */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="a">1</div>
+    <div class="b">1</div>
+    <div class="c">1</div>
+    <script>
+        window.addEventListener("resize",function(){
+            console.log(window.innerWidth)
+            document.documentElement.style.fontSize = window.innerWidth/2+"px"
+        })
+    </script>
+</body>
+</html>

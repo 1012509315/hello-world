@@ -6,15 +6,25 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
+<body style="height: 300vh;">
+    <button id="btn" >123</button>
+    <!-- onclick="fun.bind(this)(event)" -->
+</body>
+
 <script type="text/javascript">
-    window.onscroll=function(e){
+    window.onscroll = function (e) {
         //window.scrollTop = '100px'
         console.log(window.scrollY);
         //console.log('123');
     }
-    
+    function fun(obj,e,a) {
+        console.log(this.id)
+        console.log(obj);
+        this.style.backgroundColor="red"
+        console.log(e)
+        console.log(a)
+    }
+    // document.getElementById("btn").onclick = fun
+    document.getElementById("btn").addEventListener("click",fun.bind(document.getElementById("btn"),"1","2"))
 </script>
-<body style="height: 300vh;">
-    <p>1234564646465</p>
-</body>
 </html>

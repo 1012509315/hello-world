@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 190vh;
+    flex-direction: column;
+}
+ul{
+    /* flex: 0 1 60%; */
+}
+ul li{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    vertical-align: bottom;
+    border: 50px solid #fff;
+    border-radius: 50%;
+    margin-right: 50px;
+    transition: 2s;
+    border-image: linear-gradient(0deg, #fff 0% , #000 100%) 30;
+    
+}
+ul li:hover {
+    
+    background-color: #fff;
+    border: 50px solid rgba(58,182,205,.5);
+    
+    
+}
+.demo{
+    display: inline-block;
+    font-family: "PingFangSC-semibold";
+    font-size: 30px;
+    text-align: center;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(90deg, #7e40ee 0, red 100%);
+     flex: 0 1 60%;
+}

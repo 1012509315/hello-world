@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儿童节我居然在这写代码！</title>
+    <link rel="stylesheet" href="0601.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="https://use.fontawesome.com/cf2a09fdc5.js"> </script> -->
+    <!-- <script src="https://use.fontawesome.com/cf2a09fdc5.js"></script>    -->
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="image">
+                <img src="">
+            </div>
+            <div class="content">
+                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div class="text">No file chosen, yet!</div>
+            </div>
+            <div id="cancel-btn"><i class="fas fa-times"></i></div>
+            <div class="file-name">File name here</div>
+        </div>
+        <input type="file" id="default-btn" hidden>
+        <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+    </div>
+    <script>
+        const defaultBtn = document.querySelector("#default-btn")
+        const customBtn = document.querySelector("#custom-btn")
+        const img = document.querySelector("img")
+        function defaultBtnActive(){
+            defaultBtn.click();
+        }
+        defaultBtn.addEventListener("change",function(){
+            const file = this.files[0];
+            console.log('file.name', file.name)
+            console.log('file.size', file.size)
+            console.log('file.type', file.type)
+            //这种方式可以获取文件的路径 让图片渲染上去
+            // var url = window.URL.createObjectURL(file);
+            // console.log('url', url)
+            // img.src = url
+            
+            //formdata
+            // var data = new FormData();
+            // data.append("file",file,"xiaoxiao")
+            // data.append("file1",file,"xiaoxiao")
+            // console.log(data)
+            // url = window.URL.createObjectURL(data.get("file"));
+            // console.log('url', url)
+            // img.src = url
+
+            // img.onload = function() {
+            //     img.style.display = "inline-block"
+            //     window.URL.revokeObjectURL(url)
+            // }
+            
+            if(file){
+                const reader = new FileReader();
+                //这种方式也可以
+                var blob = new Blob([file])
+                console.log('blob', blob)
+                reader.readAsDataURL(blob)
+                // reader.readAsArrayBuffer(blob)
+                // // reader.readAsText(file)
+                // console.log(reader)
+                reader.onload = function() {
+                    const result = reader.result;
+                    console.log('result', result)
+                    console.log(new Blob([result]))
+                    // console.log(result.slice(2160))
+                    img.src = result
+                    img.style.display = "inline-block"
+                }
+            }
+            
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>上机题</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        [v-clock] {
+            display: none;
+        }
+
+        #app {
+            width: 100%;
+            background: #fff;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        el-input{
+            width: 400px;
+        }
+        #ul{
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid gray;
+        }
+        #ul>li{
+            font-size: 18px;
+            margin-right: 18px;
+            cursor: pointer;
+        }
+        #ul>li:last-child{
+            margin-right: 0;
+        }
+        .listyle{
+            color: green;
+            border-bottom: 2px solid green;
+        }
+        .course{
+            width: 200px;
+            height: 100px;
+            line-height: 50px;
+            border-bottom: 2px solid gray;
+            padding-left: 25px;
+            margin-left: 10px;
+            position: relative;
+        }
+        .course>input{
+            position: absolute;
+            top:50%;
+            left: 0;
+            transform: translateY(-50%);
+            
+        }
+        .course:last-child{
+            border: none;
+        }
+        .course-list{
+            width: 420px;
+            height: 400px;
+            overflow: auto;
+        }
+        .is-course{
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .course-list::-webkit-scrollbar{
+            width: 4px;
+            height: 4px;
+        }
+        .course-list::-webkit-scrollbar-thumb{
+            background: gray;
+            border-radius: 10px;
+        }
+        .course-list::-webkit-scrollbar-track{
+            background-color: rgba(128, 128, 128,0.3);
+        }
+    </style>
+    <script crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div v-if='isCourse' class="is-course">
+        <el-button type="success" @click="selectCourse">选择课程</el-button>
+        <div style="width: 360px;">
+            <el-table :data="tableData" style="width: 100%">
+                <el-table-column prop="name" label="文件名" width="180">
+                </el-table-column>
+                <el-table-column prop="price" label="价格" width="180">
+                </el-table-column>
+            </el-table>
+        </div>
+        </div>
+        <div v-else class="is-course">
+            <div>
+                <div>添加课程</div>
+                <el-input v-model="input" placeholder="请输入内容" style="width: 400px;"></el-input>
+                <el-button type="pain" @click="dataSearch">搜索</el-button>
+                <ul id='ul'>
+                    <li v-for="(item,index) in liData" @click='liStyle(index)' :class="style===index?'listyle':''">{{item}}</li>
+                </ul>
+            </div>
+            <div class="course-list" @scroll='scroll'>
+                <div v-for='(item,index) in courseData' class="course" >
+                    <input type="checkbox" :value="index" v-model="selectArr">
+                    <div>{{item.name}}</div>
+                    <div style="color: red;">&yen; {{item.price}}</div>
+                </div>
+            </div> 
+            <el-button type="pain" @click="no">取消</el-button>
+            <el-button type="pain" @click="yes">确定</el-button>
+        </div>
+    </div>
+    
+    <script>   
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isCourse:true,
+                tableData: [{
+                    name: '2016-05-02',
+                    price: '王小虎'
+                }],
+                input:'',
+                liData:['图文','音频','视频','录播','直播','班级','题库'],
+                style:0,
+                count:10,
+                course:[],
+                courseData:[{
+                        name:'我是课程0',
+                        price:100
+                    },
+                    {
+                        name: '我是课程1',
+                        price: 100
+                    }, 
+                    {
+                        name: '我是课程2',
+                        price: 100
+                    }, 
+                    {
+                        name: '我是课程3',
+                        price: 100
+                    }, 
+                    {
+                        name: '我是课程4',
+                        price: 100
+                    },
+                    {
+                        name: '我是课程5',
+                        price: 100
+                    },
+                    {
+                        name: '我是课程6',
+                        price: 100
+                    },
+                    {
+                        name: '我是课程7',
+                        price: 100
+                    },
+                    {
+                        name: '我是课程8',
+                        price: 100
+                    },
+                    {
+                        name: '我是课程9',
+                        price: 100
+                    }
+                ],
+                selectArr:[]
+            },
+            computed: {
+               
+            },
+            methods: {
+                selectCourse(){
+                    this.isCourse = !this.isCourse
+                },
+                liStyle(index){
+                    this.style = index
+                },
+                scroll(e){
+                    if(e.target.scrollTop > e.target.scrollHeight-201-400){
+                        console.log(1)
+                        this.courseData = [...this.courseData,...this.courseData]
+                        this.course = this.courseData
+                    }
+                },
+                yes(){
+                    let arr = this.selectArr.map((item) => {
+                        return this.courseData[item]
+                    })
+                    this.tableData.push(
+                        ...arr
+                    )
+                    this.selectArr=[]
+                    this.isCourse = !this.isCourse
+                },
+                no(){
+                    this.isCourse = !this.isCourse
+                },
+                dataSearch(){
+                    console.log(this.input)
+                    let reg = new RegExp(this.input,"ig")
+                    let arr = this.course.filter((item)=>{
+                        return reg.test(item.name)
+                    })
+                    this.courseData = arr
+                }
+            },
+            mounted() {
+                this.course = this.courseData
+            }
+        })
+    </script>
+</body>
+</html>

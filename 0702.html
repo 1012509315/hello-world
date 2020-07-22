@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+        <el-select v-model="value" placeholder="请选择" @change="change">
+            <el-option label="一" :value="1">
+            </el-option>
+            <el-option label="二" :value="2">
+            </el-option>
+            <el-option label="三" :value="3">
+            </el-option>
+            <el-option label="四" :value="4">
+            </el-option>
+        </el-select>
+        
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                value: ""
+            },
+            methods: {
+                change(e){
+                    console.log(typeof e)
+                    console.log(this.value)
+                    console.log(typeof this.value)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

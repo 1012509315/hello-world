@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script crossorigin="anonymous" src="https://lib.baomitu.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .list{
+            display: inline-block;
+            width: 80px;
+            border: 1px solid gray;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            /* margin: 0; */
+            /* padding: 0; */
+        }
+        .container{
+            display: flex;
+            justify-content: start;
+        }
+        .warp{
+            border: 1px solid burlywood;
+            margin-right: 1px;
+            width: 80px;
+            /* text-align: center; */
+            padding-left: 8px;
+            height: 20px;
+            line-height: 20px;
+            position: relative;
+            box-shadow: rgba(0, 255, 255, 0.541) 1px 1px;
+        }
+        .warp::after,.warp::before{
+            content: "";
+            display: block;
+            width: 10px;
+            height: 0;
+            border: 1px solid gray;
+            position: absolute;
+            right: 10px;
+            top: 9px;
+            transform: rotate(-45deg);
+        }
+        .warp::after{
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <el-button type="primary">主要按钮</el-button>
+        <el-breadcrumb separator="">
+            <el-breadcrumb-item ><span class = 'list'>活动管理</span></el-breadcrumb-item>
+            <el-breadcrumb-item><span class = 'list'>活动管理</span></el-breadcrumb-item>
+            <el-breadcrumb-item><span class = 'list'>活动管理</span></el-breadcrumb-item>
+            <el-breadcrumb-item><span class = 'list'>活动管理</span></el-breadcrumb-item>
+        </el-breadcrumb>
+        <div class="container">
+            <div class="warp">这是1</div>
+            <div class="warp">这是2</div>
+            <div class="warp">这是3</div>
+            <div class="warp">这是4</div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+                el: '#app',
+                data: {
+                   
+                },
+                computed: {
+
+                },
+                methods: {
+                    
+                },
+            })
+    </script>
+</body>
+</html>
